@@ -2,18 +2,24 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Sidebar from "./components/HomeNav/Sidebar"
 import Topbar from "./components/HomeNav/Topbar"
+
 import ExplorePage from "./components/Explore/ExplorePage"
+import SearchPage from "./components/SearchPage/SearchPage"
+
 import Cart from "./pages/Cart"
 import Address from "./pages/Address"
 import Payment from "./pages/Payment"
-import SearchPage from "./components/SearchPage/SearchPage"
+import Orders from "./pages/Orders"
+import OrderDetails from "./pages/OrderDetails"
 
 function AppContent() {
   return (
     <div className="flex h-screen bg-white text-gray-800">
+      {/* Sidebar */}
       <Sidebar />
 
-      <div className="flex flex-col flex-1 bg-white">
+      {/* Main Content */}
+      <div className="flex flex-col flex-1">
         <Topbar />
 
         <div className="flex-1 overflow-y-auto bg-gray-50">
@@ -23,6 +29,10 @@ function AppContent() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/address" element={<Address />} />
             <Route path="/payment" element={<Payment />} />
+
+            {/* Orders */}
+            <Route path="/orders" element={<Orders />} />
+      <Route path="/orders/:orderId" element={<OrderDetails />} />
           </Routes>
         </div>
       </div>

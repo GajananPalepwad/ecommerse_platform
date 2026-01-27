@@ -1,9 +1,10 @@
 // Sidebar.jsx
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Sidebar() {
   const [showAllLists, setShowAllLists] = useState(false)
+  const navigate = useNavigate()
 
   const additionalLists = [
     "Birthday Gifts",
@@ -23,10 +24,8 @@ export default function Sidebar() {
 
       {/* Cart Section */}
       <div className="flex flex-col gap-2 pb-6 border-b border-gray-200">
-        {/* Cart Header */}
         <span className="text-gray-400 text-sm tracking-wide">Cart</span>
 
-        {/* Home Link above Cart samples */}
         <Link
           to="/"
           className="text-gray-700 text-sm font-medium hover:text-blue-500 ml-2 mt-1"
@@ -34,7 +33,6 @@ export default function Sidebar() {
           🏠 Home
         </Link>
 
-        {/* Cart Items with images */}
         <div className="flex flex-col gap-3 ml-2 mt-2">
           <div className="flex items-center gap-2 cursor-pointer group">
             <img
@@ -139,7 +137,11 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <span className="mt-4 text-gray-400 text-xs cursor-pointer hover:text-blue-500">
+        {/* ✅ GUARANTEED WORKING */}
+        <span
+          onClick={() => navigate("/orders")}
+          className="mt-4 text-gray-400 text-xs cursor-pointer hover:text-blue-500 select-none"
+        >
           See all
         </span>
       </div>
