@@ -4,7 +4,7 @@ import { CategoryCard } from "./CategoryCards";
 
 const CategoryModal = ({ categories, onClose }) => {
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
       <div className="w-[50vw] h-[100vh] bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
 
         {/* Header */}
