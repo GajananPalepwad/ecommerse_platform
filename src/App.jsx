@@ -8,6 +8,10 @@ import Address from "./pages/Address"
 import Payment from "./pages/Payment"
 import SearchPage from "./components/SearchPage/SearchPage"
 
+//Product Details
+import TopProducts from "./components/Explore/TopProducts";
+import ProductDetails from "./components/Explore/ProductDetails";
+
 function AppContent() {
   return (
     <div className="flex h-screen bg-white text-gray-800">
@@ -23,6 +27,11 @@ function AppContent() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/address" element={<Address />} />
             <Route path="/payment" element={<Payment />} />
+
+            // Product Details
+            
+        <Route path="/product/:slug" element={<ProductDetails />} />
+
           </Routes>
         </div>
       </div>

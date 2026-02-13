@@ -41,7 +41,7 @@ function Register({ onClose, onSwitch }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-700/95 bg-opacity-50 flex items-center justify-center z-50">
+     <div className="fixed inset-0 bg-gray-700/95 flex justify-center z-50 py-5 overflow-y-auto">
       <div className="flex max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden relative">
 
         {/* Close button - top right corner */}
@@ -53,7 +53,7 @@ function Register({ onClose, onSwitch }) {
         </button>
 
         {/* Left Side - Form */}
-        <div className="w-1/2 p-16 flex flex-col bg-pink-50 justify-center rounded-l-3xl">
+        <div className="w-1/2 p-10 flex flex-col bg-pink-50 justify-center rounded-l-3xl">
           <h1 className="text-3xl font-semibold text-center mb-2">
             Create your account
           </h1>

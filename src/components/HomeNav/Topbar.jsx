@@ -40,6 +40,13 @@ export default function Topbar() {
 
     // Close login modal
     setShowLogin(false);
+
+    // Check if user was trying to access cart before login
+    const pendingCartAccess = localStorage.getItem("pendingCartAccess");
+    if (pendingCartAccess === "true") {
+      localStorage.removeItem("pendingCartAccess");
+      navigate("/cart");
+    }
   };
 
   const handleLogout = () => {
@@ -49,6 +56,19 @@ export default function Topbar() {
     localStorage.removeItem("userEmail");
     setIsLoggedIn(false);
     setOpen(false);
+  };
+
+  // Handle cart click - check login first
+  const handleCartClick = () => {
+    if (!isLoggedIn) {
+      // Store that user wants to access cart
+      localStorage.setItem("pendingCartAccess", "true");
+      // Show login modal
+      setShowLogin(true);
+    } else {
+      // Already logged in, go to cart
+      navigate("/cart");
+    }
   };
 
   return (
@@ -101,9 +121,9 @@ export default function Topbar() {
           {/* Cart + Preview */}
           <div className="flex items-center gap-3">
 
-            {/* Cart Button */}
+            {/* Cart Button - Now with login check */}
             <button
-              onClick={() => navigate("/cart")}
+              onClick={handleCartClick}
               className={`relative flex items-center gap-2 px-4 py-2 rounded-xl font-semibold transition
               ${isCartPage
                   ? "bg-black text-white"
@@ -172,7 +192,11 @@ export default function Topbar() {
       {/* Login Popup */}
       {showLogin && (
         <Login
-          onClose={() => setShowLogin(false)}
+          onClose={() => {
+            setShowLogin(false);
+            // Clear pending cart access if user closes login without logging in
+            localStorage.removeItem("pendingCartAccess");
+          }}
           onSwitch={() => {
             setShowLogin(false);
             setShowRegister(true);
