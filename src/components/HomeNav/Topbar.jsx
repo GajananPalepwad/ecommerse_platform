@@ -39,27 +39,26 @@ export default function Topbar() {
           </svg>
 
           {/* Input */}
-<input
-  type="text"
-  placeholder="Search Perfect Product for you"
-  onFocus={() => navigate("/search")}
-  onClick={() => navigate("/search")}
-  className="
-    w-full
-    pl-12 pr-4 py-2.5
-    border border-gray-300
-    rounded-full
-    text-sm
-    focus:outline-none
-    focus:border-black
-    cursor-pointer
-  "
-/>
-
+          <input
+            type="text"
+            placeholder="Search Perfect Product for you"
+            onFocus={() => navigate("/search")}
+            onClick={() => navigate("/search")}
+            className="
+              w-full
+              pl-12 pr-4 py-2.5
+              border border-gray-300
+              rounded-full
+              text-sm
+              focus:outline-none
+              focus:border-black
+              cursor-pointer
+            "
+          />
         </div>
       </div>
 
-      {/* RIGHT: CART + PREVIEW + PROFILE */}
+      {/* RIGHT: CART + PROFILE */}
       <div className="flex items-center gap-4">
 
         {/* Cart + Preview */}
@@ -107,11 +106,42 @@ export default function Topbar() {
 
           {open && (
             <div className="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-lg border z-50 overflow-hidden">
-              <DropdownItem text="Notifications" />
-              <DropdownItem text="My Profile" />
-              <DropdownItem text="Settings" />
+
+              <DropdownItem
+                text="Notifications"
+                onClick={() => {
+                  navigate("/notifications")
+                  setOpen(false)
+                }}
+              />
+
+              <DropdownItem
+                text="My Profile"
+                onClick={() => {
+                  navigate("/profile")
+                  setOpen(false)
+                }}
+              />
+
+              <DropdownItem
+                text="Settings"
+                onClick={() => {
+                  navigate("/settings")
+                  setOpen(false)
+                }}
+              />
+
               <hr />
-              <DropdownItem text="Logout" danger />
+
+              <DropdownItem
+                text="Logout"
+                danger
+                onClick={() => {
+                  // Add your logout logic here
+                  navigate("/login")
+                  setOpen(false)
+                }}
+              />
             </div>
           )}
         </div>
@@ -120,9 +150,10 @@ export default function Topbar() {
   )
 }
 
-function DropdownItem({ text, danger }) {
+function DropdownItem({ text, danger, onClick }) {
   return (
     <div
+      onClick={onClick}
       className={`px-4 py-2 text-sm cursor-pointer transition
         ${danger
           ? "text-red-500 hover:bg-red-50"
