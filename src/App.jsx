@@ -29,6 +29,9 @@ import AccountSupport from "./pages/AccountSupport"
 import PrivacySupport from "./pages/PrivacySupport"
 import GiftCardsSupport from "./pages/GiftCardsSupport"
 
+//Product Details
+import TopProducts from "./components/Explore/TopProducts";
+import ProductDetails from "./components/Explore/ProductDetails";
 
 function AppContent() {
   return (
@@ -50,6 +53,10 @@ function AppContent() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/address" element={<Address />} />
             <Route path="/payment" element={<Payment />} />
+
+            // Product Details
+            
+        <Route path="/product/:slug" element={<ProductDetails />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<ProfileSetting />} />
 
@@ -79,8 +86,6 @@ function AppContent() {
 
 <Route path="/create-list" element={<CreateListPage />} />
 <Route path="/list/:name" element={<ListPage />} />
-
-
 
 
 
