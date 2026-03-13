@@ -113,10 +113,31 @@ export default function Topbar() {
             />
 
           </div>
+
+          </svg>
+
+          {/* Input */}
+          <input
+            type="text"
+            placeholder="Search Perfect Product for you"
+            onFocus={() => navigate("/search")}
+            onClick={() => navigate("/search")}
+            className="
+              w-full
+              pl-12 pr-4 py-2.5
+              border border-gray-300
+              rounded-full
+              text-sm
+              focus:outline-none
+              focus:border-black
+              cursor-pointer
+            "
+          />
         </div>
 
         {/* RIGHT: CART + PREVIEW + PROFILE/LOGIN */}
         <div className="flex items-center gap-4">
+
 
           {/* Cart + Preview */}
           <div className="flex items-center gap-3">
@@ -184,6 +205,61 @@ export default function Topbar() {
                   />
                 </div>
               )}
+            {cartPreviewImages.length > 3 && (
+              <div className="w-7 h-7 rounded-full bg-gray-200 text-xs flex items-center justify-center border-2 border-white font-semibold">
+                +{cartPreviewImages.length - 3}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Profile */}
+        <div className="relative">
+          <img
+            src="https://i.pravatar.cc/40"
+            alt="profile"
+            className="w-10 h-10 rounded-full cursor-pointer"
+            onClick={() => setOpen(!open)}
+          />
+
+          {open && (
+            <div className="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-lg border z-50 overflow-hidden">
+
+              <DropdownItem
+                text="Notifications"
+                onClick={() => {
+                  navigate("/notifications")
+                  setOpen(false)
+                }}
+              />
+
+              <DropdownItem
+                text="My Profile"
+                onClick={() => {
+                  navigate("/profile")
+                  setOpen(false)
+                }}
+              />
+
+              <DropdownItem
+                text="Settings"
+                onClick={() => {
+                  navigate("/settings")
+                  setOpen(false)
+                }}
+              />
+
+              <hr />
+
+              <DropdownItem
+                text="Logout"
+                danger
+                onClick={() => {
+                  // Add your logout logic here
+                  navigate("/login")
+                  setOpen(false)
+                }}
+              />
             </div>
           )}
         </div>

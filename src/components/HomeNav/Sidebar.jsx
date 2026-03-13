@@ -1,9 +1,10 @@
 // Sidebar.jsx
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Sidebar() {
   const [showAllLists, setShowAllLists] = useState(false)
+  const navigate = useNavigate()
 
   const additionalLists = [
     "Birthday Gifts",
@@ -14,6 +15,7 @@ export default function Sidebar() {
 
   return (
     <aside className="bg-white shadow-md w-64 p-6 flex flex-col h-screen border-r border-gray-200">
+
       {/* Logo */}
       <div className="mb-6 pb-6 border-b border-gray-200">
         <span className="text-xl font-bold text-gray-800">
@@ -21,20 +23,21 @@ export default function Sidebar() {
         </span>
       </div>
 
-      {/* Cart Section */}
+      {/* Home Section */}
       <div className="flex flex-col gap-2 pb-6 border-b border-gray-200">
-        {/* Cart Header */}
+        <div
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500 transition duration-200 ml-2"
+        >
+          <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+          <span className="font-medium">Home</span>
+        </div>
+      </div>
+
+      {/* Cart Section */}
+      <div className="flex flex-col gap-2 mt-5 pb-6 border-b border-gray-200">
         <span className="text-gray-400 text-sm tracking-wide">Cart</span>
 
-        {/* Home Link above Cart samples */}
-        <Link
-          to="/"
-          className="text-gray-700 text-sm font-medium hover:text-blue-500 ml-2 mt-1"
-        >
-          🏠 Home
-        </Link>
-
-        {/* Cart Items with images */}
         <div className="flex flex-col gap-3 ml-2 mt-2">
           <div className="flex items-center gap-2 cursor-pointer group">
             <img
@@ -68,21 +71,34 @@ export default function Sidebar() {
       <div className="flex flex-col gap-2 mt-5 pb-6 border-b border-gray-200">
         <span className="text-gray-400 text-sm tracking-wide">List</span>
 
-        <div className="flex flex-col gap-2 ml-2">
-          <div className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500">
+        <div className="flex flex-col gap-2 ml-2 mt-2">
+
+          {/* Wishlist */}
+          <div
+            onClick={() => navigate("/wishlist")}
+            className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500"
+          >
             <span className="text-lg">+</span>
             <span>Wishlist</span>
           </div>
 
-          <div className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500">
+          {/* Create Your Own */}
+          <div
+            onClick={() => navigate("/create-list")}
+            className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500"
+          >
             <span className="text-lg">+</span>
             <span>Create Your Own</span>
           </div>
 
+          {/* Additional Lists */}
           {showAllLists &&
             additionalLists.map((list, index) => (
               <div
                 key={index}
+                onClick={() =>
+                  navigate(`/list/${list.toLowerCase().replace(/\s+/g, "-")}`)
+                }
                 className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500"
               >
                 <span className="text-lg">+</span>
@@ -139,14 +155,20 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <span className="mt-4 text-gray-400 text-xs cursor-pointer hover:text-blue-500">
+        <span
+          onClick={() => navigate("/orders")}
+          className="mt-4 text-gray-400 text-xs cursor-pointer hover:text-blue-500 select-none"
+        >
           See all
         </span>
       </div>
 
       {/* Help & Support */}
       <div className="flex flex-col gap-2 mt-5 pb-6 border-b border-gray-200">
-        <div className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500">
+        <div
+          onClick={() => navigate("/help-support")}
+          className="flex items-center gap-2 text-gray-700 cursor-pointer hover:text-blue-500 transition duration-200"
+        >
           <span className="text-lg">❓</span>
           <span>Help & Support</span>
         </div>
@@ -160,6 +182,7 @@ export default function Sidebar() {
           <span className="font-medium">Logout</span>
         </div>
       </div>
+
     </aside>
   )
 }
