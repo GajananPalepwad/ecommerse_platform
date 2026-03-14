@@ -114,7 +114,7 @@ export default function Topbar() {
 
           </div>
 
-          </svg>
+          
 
           {/* Input */}
           <input
@@ -174,45 +174,34 @@ export default function Topbar() {
           </div>
 
           {/* Profile or Login Button */}
-          {!isLoggedIn ? (
-            // Show Login Button when NOT logged in
-            <button
-              onClick={() => setShowLogin(true)}
-              className="px-6 py-2 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-colors"
-            >
-              Login
-            </button>
-          ) : (
-            // Show Profile Dropdown when logged in
-            <div className="relative">
-              <img
-                src="https://i.pravatar.cc/40"
-                alt="profile"
-                className="w-10 h-10 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-colors"
-                onClick={() => setOpen(!open)}
-              />
+{!isLoggedIn ? (
+  <button
+    onClick={() => setShowLogin(true)}
+    className="px-6 py-2 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-colors"
+  >
+    Login
+  </button>
+) : (
+  <div className="relative">
+    <img
+      src="https://i.pravatar.cc/40"
+      alt="profile"
+      className="w-10 h-10 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-colors"
+      onClick={() => setOpen(!open)}
+    />
 
-              {open && (
-                <div className="absolute right-0 mt-3 w-52 bg-white rounded-xl shadow-lg border z-50 overflow-hidden">
-                  <DropdownItem text="Notifications" />
-                  <DropdownItem text="My Profile" />
-                  <DropdownItem text="Settings" />
-                  <hr />
-                  <DropdownItem
-                    text="Logout"
-                    danger
-                    onClick={handleLogout}
-                  />
-                </div>
-              )}
-            {cartPreviewImages.length > 3 && (
-              <div className="w-7 h-7 rounded-full bg-gray-200 text-xs flex items-center justify-center border-2 border-white font-semibold">
-                +{cartPreviewImages.length - 3}
-              </div>
-            )}
-          </div>
-        </div>
-
+    {open && (
+      <div className="absolute right-0 mt-3 w-52 bg-white rounded-xl shadow-lg border z-50 overflow-hidden">
+        <DropdownItem text="Notifications" />
+        <DropdownItem text="My Profile" />
+        <DropdownItem text="Settings" />
+        <hr />
+        <DropdownItem text="Logout" danger onClick={handleLogout} />
+      </div>
+    )}
+  </div>
+)}
+            
         {/* Profile */}
         <div className="relative">
           <img
@@ -262,6 +251,7 @@ export default function Topbar() {
               />
             </div>
           )}
+        </div>
         </div>
       </header>
 
