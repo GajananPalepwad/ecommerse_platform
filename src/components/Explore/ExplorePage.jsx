@@ -99,51 +99,49 @@ const ExplorePage = () => {
   }, []);
 
   return (
-    <div className="bg-white p-8 max-w-[1600px] mx-auto">
+    <div className="bg-white p-3 max-w-[1600px] mx-auto">
       {/* ================= HEADER ================= */}
-      <div className="mb-10">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-12">
-            <h1 className="text-[28px] font-semibold text-gray-900">
-              Explore
-            </h1>
+      
+      <div className="relative flex items-center justify-between pb-8">
 
-            <div className="flex gap-2 relative">
-              {["All", "Men", "Women"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => handleGenderClick(tab)}
-                  className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
-                    activeTab === tab
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-gray-100 text-gray-500"
-                  }`}
-                >
-                  {tab === "All" ? (
-                    <LayoutGrid size={16} />
-                  ) : (
-                    <UserRound size={16} />
-                  )}
-                  {tab}
+  <h1 className="text-[28px] font-semibold text-gray-900">
+    Explore
+  </h1>
 
-                  {activeTab === tab && (
-                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 h-[4px] w-6 rounded-full bg-blue-500" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
+  <div className="absolute left-1/2 -translate-x-1/2 flex gap-2">
+    {["All", "Men", "Women"].map((tab) => (
+      <button
+        key={tab}
+        onClick={() => handleGenderClick(tab)}
+        className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
+          activeTab === tab
+            ? "bg-blue-100 text-blue-700"
+            : "bg-gray-100 text-gray-500"
+        }`}
+      >
+        {tab === "All" ? (
+          <LayoutGrid size={16} />
+        ) : (
+          <UserRound size={16} />
+        )}
+        {tab}
 
-          <button className="relative px-5 py-2 rounded-full bg-gray-100 text-sm font-medium">
-            <span className="absolute -top-1 -right-1 h-2 w-2 bg-blue-500 rounded-full" />
-            Filters
-          </button>
-        </div>
+        {activeTab === tab && (
+          <span className="absolute left-1/2 -translate-x-1/2 -bottom-3 h-[4px] w-6 rounded-full bg-blue-500" />
+        )}
+      </button>
+    ))}
+  </div>
 
-        <div className="mt-6 h-px bg-gray-200 w-full" />
-      </div>
+  <button className="relative px-5 py-2 rounded-full bg-gray-100 text-sm font-medium">
+    <span className="absolute -top-1 -right-1 h-2 w-2 bg-blue-500 rounded-full" />
+    Filters
+  </button>
+
+</div>
 
       {/* ================= PROMO + CATEGORY GRID ================= */}
+      
       <section className="mb-14 overflow-x-auto">
         <div className="grid grid-cols-12 gap-6 min-w-[1200px] items-stretch">
           {banners[0] && (
